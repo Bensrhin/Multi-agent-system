@@ -24,7 +24,7 @@
 all: testGUI
 
 testGUI:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBallsSimulator2.java
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestConway.java
 
 
 # Execution:
@@ -33,8 +33,9 @@ testGUI:
 # ou bien lancer l'execution en passant par ce Makefile:
 #   > make exeIHM
 exeGUI:
-	java -classpath bin:bin/gui.jar TestBallsSimulator2
+#	java -classpath bin:bin/gui.jar TestBallsSimulator2
 #	java -classpath bin:bin/gui.jar TestBallsSimulator
+	java -classpath bin:bin/gui.jar TestConway
 
 clean:
 	rm -rf bin/*.class
