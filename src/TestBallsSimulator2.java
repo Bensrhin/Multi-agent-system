@@ -18,6 +18,6 @@ public class TestBallsSimulator2{
       Balles[i] = ov;
     }
 
-    window.setSimulable(new BallsSimulator(Balles, NB));
+    window.setSimulable(new BallsSimulator2(Balles, NB));
   }
 }
