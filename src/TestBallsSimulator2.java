@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import java.util.Random;
 
-public class TestGUI2{
+public class TestBallsSimulator2{
   public static void main(String[] args){
     int NB =5;
     GUISimulator window = new GUISimulator(500, 500, Color.BLACK);

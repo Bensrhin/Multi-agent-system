@@ -24,7 +24,7 @@
 all: testGUI 
 
 testGUI:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestGUI2.java
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBallsSimulator2.java
 
 
 # Execution:
@@ -33,7 +33,7 @@ testGUI:
 # ou bien lancer l'execution en passant par ce Makefile:
 #   > make exeIHM
 exeGUI:
-	java -classpath bin:bin/gui.jar TestGUI2
+	java -classpath bin:bin/gui.jar TestBallsSimulator2
 #	java -classpath bin:bin/gui.jar TestBallsSimulator
 
 clean:
