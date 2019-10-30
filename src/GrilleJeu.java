@@ -11,6 +11,7 @@ public class GrilleJeu implements Simulable{
   int nb_etats;
   int no_jeu; //0:Conway; 1:Immigration; 2:Shelling
   GUISimulator gui;
+  
   public GrilleJeu(int mat[][], int nb_etats, GUISimulator gui, int no_jeu){
           this.mat = mat; this.nb_etats = nb_etats ;this.gui = gui; this.no_jeu = no_jeu;
       }
