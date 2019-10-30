@@ -7,6 +7,7 @@ import java.util.Random;
 public class TestImmigration{
   public static void main(String[] args){
     int N = 10; int M = 10;
+    int NB_ETATS = 4;
 
     int mat0[][] = {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // exemple du poly
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -24,11 +25,11 @@ public class TestImmigration{
     Random gen = new Random();
     for(int i=0;i<10;i++){
       for(int j=0;j<10;j++){
-        mat_aleatoire[i][j] = gen.nextInt(4);
+        mat_aleatoire[i][j] = gen.nextInt(NB_ETATS);
       }
     }
 
     GUISimulator gui = new GUISimulator(500, 500, Color.WHITE);
-    gui.setSimulable(new GrilleJeu(mat_aleatoire, 4, gui, 1));
+    gui.setSimulable(new GrilleJeu(mat_aleatoire, NB_ETATS, gui, 1));
   }
 }
