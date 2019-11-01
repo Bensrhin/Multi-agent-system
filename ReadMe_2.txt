@@ -11,3 +11,4 @@ Partie2:
 GrilleJeu.java : Question 5-6-7 : simulateur pour les trois jeux (Conway, Immigration, Shelling)
 TestConway.java : Question 5
 TestImmigration.java : Question 6
+TestShelling : QUestion 7
