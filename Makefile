@@ -39,6 +39,12 @@ Boids:
 	make testBoidsSimulator
 	make exeBoidsSimulator
 
+EventManager:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestEventManager.java
+	java -classpath bin:bin/gui.jar TestEventManager
+
+
+
 testGUI:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestEventManager.java
 

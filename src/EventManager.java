@@ -21,7 +21,7 @@ public class EventManager{
     // System.out.println(currentDate);
 
     Event e = events.peek();
-    while (e.getDate()<currentDate){
+    while (e!=null && e.getDate()<currentDate){
       e.execute();
       events.remove(e);
       e = events.peek();
