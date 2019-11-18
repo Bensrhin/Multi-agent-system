@@ -6,8 +6,13 @@ import java.util.Random;
 
 public class TestImmigration{
   public static void main(String[] args){
+<<<<<<< HEAD
     int N = 30; int M = 30;
     int NB_ETATS = 4;
+=======
+    int N = 10; int M = 10;
+    int NB_ETATS = 8;
+>>>>>>> bbaad3b5fed2b7a49ad5d62d9e8af4e13f4b80ac
 
     int mat0[][] = {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // exemple du poly
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
