@@ -23,20 +23,46 @@
 
 all: testGUI
 
-testGUI:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBoidsSimulator.java
+Conway:
+	make testConway
+	make exeConway
 
+Immigration:
+	make testImmigration
+	make exeImmigration
+
+Shelling:
+	make testShelling
+	make exeShelling
+
+Boids:
+	make testBoidsSimulator
+	make exeBoidsSimulator
+
+testConway:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestConway.java
+
+testImmigration:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestImmigration.java
+
+testShelling:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestShelling.java
+
+testBoidsSimulator:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBoidsSimulator.java
 
 # Execution:
 # on peut taper directement la ligne de commande :
 #   > java -classpath bin TestGUI
 # ou bien lancer l'execution en passant par ce Makefile:
 #   > make exeIHM
-exeGUI:
-#	java -classpath bin:bin/gui.jar TestBallsSimulator2
-#	java -classpath bin:bin/gui.jar TestBallsSimulator
-#	java -classpath bin:bin/gui.jar TestConway
-#	java -classpath bin:bin/gui.jar TestImmigration
+exeConway:
+	java -classpath bin:bin/gui.jar TestConway
+exeImmigration:
+	java -classpath bin:bin/gui.jar TestImmigration
+exeShelling:
+	java -classpath bin:bin/gui.jar TestShelling
+exeBoidsSimulator:
 	java -classpath bin:bin/gui.jar TestBoidsSimulator
 
 clean:

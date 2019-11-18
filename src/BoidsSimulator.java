@@ -8,12 +8,22 @@ import java.util.*;
 
 public class BoidsSimulator implements Simulable{
     Boids[] boids;
+    Boids[] boids_copy;
     Oval[] ovals;
+    Oval[] ovals_copy;
     int NB_BOIDS = 100;
     int DIMENSION = 500;
 
   public BoidsSimulator(Boids[] boids, Oval[] ovals){
     this.boids = boids; this.ovals = ovals;
+
+    boids_copy = new Boids[NB_BOIDS]; ovals_copy = new Oval[NB_BOIDS];
+    for (int i = 0; i<NB_BOIDS; i++){
+      boids_copy[i] = boids[i].deepCopy();
+      Oval o = ovals[i];
+      ovals_copy[i] = new Oval(o.getX(), o.getY(), Color.decode ("#1f77b4"),
+       Color.decode ("#1f77b4"), 5);
+    }
   }
 
 
@@ -126,7 +136,7 @@ public class BoidsSimulator implements Simulable{
          Point v2 = rule2(boids[i]);
          Point v3 = rule3(boids[i]);
          limite_vitesse(boids[i], 15);
-         Point v5 = cadrage(boids[i], false);
+         Point v5 = cadrage(boids[i], true);
          Point v6 = strong_wind(0, 0);
          Point v = new Point((int)(v1.getX()+v2.getX()+v3.getX()+v5.getX()+v6.getX()), (int)(v1.getY()+v2.getY()+v3.getY()+v5.getY()+v6.getY()));
          boids[i].vitesse.translate((int)v.getX(), (int)v.getY());
@@ -136,6 +146,8 @@ public class BoidsSimulator implements Simulable{
 
 
   public void restart(){ // ne fait rien, à l'instant
+      boids = boids_copy;
+      ovals = ovals_copy;
       update_GUI();
   }
 

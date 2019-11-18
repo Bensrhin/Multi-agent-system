@@ -5,23 +5,25 @@ import java.awt.Color;
 import java.util.*;
 
 
-public class GrilleJeu implements Simulable{
-  int N = 10; int M = 10;
+public abstract class GrilleJeu implements Simulable{
+  int N; int M;
   int mat[][];
+  int mat_copy[][] ; //pour restart
   int nb_etats;
   int no_jeu; //0:Conway; 1:Immigration; 2:Shelling
   GUISimulator gui;
   LinkedList<Point> vacants; //uniquement pour Shelling
   int seuil; //uniquement pour Shelling
 
-  public GrilleJeu(int mat[][], int nb_etats, GUISimulator gui, int no_jeu){
+  public GrilleJeu(int mat[][], int nb_etats, GUISimulator gui, int no_jeu, int N, int M){
           this.mat = mat; this.nb_etats = nb_etats ;this.gui = gui; this.no_jeu = no_jeu;
-      }
-
-  public GrilleJeu(int mat[][], int nb_etats, GUISimulator gui, int no_jeu, LinkedList<Point> vacants, int seuil){
-          // uniquement pour Shelling
-          this.mat = mat; this.nb_etats = nb_etats ;this.gui = gui; this.no_jeu = no_jeu;
-          this.vacants = vacants; this.seuil = seuil;
+          this.N = N; this.M = M;
+          mat_copy =  new int[N][M];
+          for (int i = 0; i<N; i++){
+            for (int j = 0; j<M; j++){
+              mat_copy[i][j] = mat[i][j];
+            }
+          }
       }
 
   public void update_GUI(int[][] mat, int nb_etats, GUISimulator gui){
@@ -39,133 +41,17 @@ public class GrilleJeu implements Simulable{
     }
   }
 
-  public int[][] update_mat_conway(int[][] mat){
-    // Mise à jour de la matrice pour le jeu de Conway
-    int resultat[][] = new int[N][M];
-    for (int i =0; i<N; i++){
-      for (int j = 0; j<M; j++){
-        resultat[i][j] = mat[i][j];
-        int sum = (mat[(i-1+N)%N][(j-1+M)%M] + mat[(i-1+N)%N][j] + mat[(i-1+N)%N][(j+1)%M]) +
-        (mat[i][(j-1+M)%M] + mat[i][(j+1)%M]) +
-        (mat[(i+1)%N][(j-1+M)%M] + mat[(i+1)%N][j] + mat[(i+1)%N][(j+1)%M]);
-        if (mat[i][j]==0 && sum==3){
-          resultat[i][j] = 1;
-        }
-        else if (mat[i][j] == 1 && (sum<=1 || sum>=4)){
-          resultat[i][j] = 0;
-        }
-      }
-    }
-    return(resultat);
-  }
-
-  public int[][] update_mat_immigration(int[][] mat){
-    // Mise à jour de la matrice pour le jeu d'immigration
-    // Attention : Ce programme envoie automatiquement les résulats au
-    // secrétariat de Mme Le Pen, pourvu qu'ils soient informatifs.
-    int resultat[][] = new int[N][M];
-    int[] voisins = new int[8];
-    for (int i =0; i<N; i++){
-      for (int j = 0; j<M; j++){
-        resultat[i][j] = mat[i][j];
-        voisins[0] = mat[(i-1+N)%N][(j-1+M)%M]; voisins[1] = mat[(i-1+N)%N][j];
-        voisins[2] = mat[(i-1+N)%N][(j+1)%M]; voisins[3] = mat[i][(j-1+M)%M];
-        voisins[4] = mat[i][(j+1)%M]; voisins[5] = mat[(i+1)%N][(j-1+M)%M];
-        voisins[6] = mat[(i+1)%N][j]; voisins[7] = mat[(i+1)%N][(j+1)%M];
-        int c = 0;
-        for (int k =0; k<8; k++){
-          if (voisins[k]==mat[i][j]+1){
-            c++;
-          }
-        }
-        if (c>=3){
-          resultat[i][j] = (resultat[i][j]+1)%this.nb_etats;
-        }
-      }
-    }
-    return(resultat);
-  }
-
-  public void print_mat(int[][] mat){// pour le déboggage uniquement
-    for (int i=0; i<N; i++){
-      for (int j=0; j<M; j++){
-        System.out.print(mat[i][j]); System.out.print(" ,");
-      }
-      System.out.println(" ");
-    }
-  }
-
-  public void print_vec(LinkedList<Point> vec, int size){// pour le déboggage uniquement
-    for (int i=0; i<size; i++){
-      System.out.print(vec.get(i)); System.out.print(" ,");
-    }
-    System.out.println(" ");
-  }
-
-
-  public int[][] update_mat_shelling(int[][] mat){
-    //Mise à jour de la matrice pour le modèle de Shelling
-
-    // l'état correspondant à la valeur 0 est celui d'un logement vacant, les autres
-    // des logements habités par une certaine couleur
-    int seuil=3; //seuil, compris entre 0 et 8
-    int resultat[][] = new int[N][M];
-    int[] voisins = new int[8];
-
-    LinkedList<Point> history = new LinkedList<Point>();// on y stocke les logements déménagés
-    // durant une itération,ceci pour éviter une situation ou deux logements échangent de place par exemple
-
-    for (int i =0; i<N; i++){
-      for (int j = 0; j<M; j++){
-        resultat[i][j] = mat[i][j];
-      }
-    }
-
-    for (int i =0; i<N; i++){
-      for (int j = 0; j<M; j++){
-        Point p0 = new Point(i,j);
-        if (history.indexOf(p0)==-1 && mat[i][j]!=0){//p0 n'est pas dans history, et n'est pas vacant
-          voisins[0] = mat[(i-1+N)%N][(j-1+M)%M]; voisins[1] = mat[(i-1+N)%N][j];
-          voisins[2] = mat[(i-1+N)%N][(j+1)%M]; voisins[3] = mat[i][(j-1+M)%M];
-          voisins[4] = mat[i][(j+1)%M]; voisins[5] = mat[(i+1)%N][(j-1+M)%M];
-          voisins[6] = mat[(i+1)%N][j]; voisins[7] = mat[(i+1)%N][(j+1)%M];
-          int c = 0;
-          for (int k = 0; k<8; k++){
-            if (voisins[k]!=mat[i][j] && voisins[k]!=0){
-              c++;
-            }
-          }
-          if (c>=this.seuil){ //déménagement
-            Point nv = this.vacants.getFirst();
-            resultat[(int) nv.getX()][(int) nv.getY()] = mat[i][j];
-            resultat[i][j] = 0;
-            this.vacants.add(new Point(i,j));
-            history.add(new Point((int) nv.getX(), (int) nv.getY()));
-            this.vacants.removeFirst();
-          }
-        }
-      }
-    }
-    // System.out.println("Itération accomplie!");
-    return(resultat);
-  }
-
+  public abstract int[][] update_mat(int[][] mat);
 
   @Override
   public void next(){
     this.update_GUI(this.mat, this.nb_etats, this.gui);
-    if (this.no_jeu == 0){
-      this.mat = update_mat_conway(this.mat);
-    }
-    else if (this.no_jeu == 1){
-      this.mat = update_mat_immigration(this.mat);
-    }
-    else{
-      this.mat = update_mat_shelling(this.mat);
-    }
+    this.mat = update_mat(this.mat);
   }
-  public void restart(){ // ne fait rien, à l'instant
-    this.update_GUI(this.mat, this.nb_etats, this.gui);
+
+  public void restart(){
+    this.update_GUI(this.mat_copy, this.nb_etats, this.gui);
+    this.mat = this.update_mat(this.mat_copy);
   }
 
 }

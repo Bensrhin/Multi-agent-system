@@ -30,7 +30,7 @@ public class TestConway{
     //                 {0, 0, 0, 0, 0} };
 
     GUISimulator gui = new GUISimulator(500, 500, Color.BLACK);
-    gui.setSimulable(new GrilleJeu(mat0, 2, gui, 0));
+    gui.setSimulable(new Conway(mat0, 2, gui, 0, N, M));
 
 
   }

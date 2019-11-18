@@ -24,7 +24,7 @@ public class TestBoidsSimulator{
     for (int i=0; i<NB_BOIDS; i++){
       Boids b = my_boids[i];
       Oval ov = new Oval((int)b.position.getX(), (int)b.position.getY(), Color.decode ("#1f77b4"),
-       Color.decode ("#1f77b4"), 1);
+       Color.decode ("#1f77b4"), 5);
       my_ovals[i] = ov;
       gui.addGraphicalElement(ov);
     }
