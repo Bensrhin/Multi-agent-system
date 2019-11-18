@@ -24,7 +24,7 @@
 all: testGUI
 
 testGUI:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBoidsSimulator.java
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestEventManager.java
 
 
 # Execution:
@@ -35,9 +35,11 @@ testGUI:
 exeGUI:
 #	java -classpath bin:bin/gui.jar TestBallsSimulator2
 #	java -classpath bin:bin/gui.jar TestBallsSimulator
-#	java -classpath bin:bin/gui.jar TestConway
+	java -classpath bin:bin/gui.jar TestEventManager
+#	java -classpath bin:bin/gui.jar TestShelling
 #	java -classpath bin:bin/gui.jar TestImmigration
-	java -classpath bin:bin/gui.jar TestBoidsSimulator
+#	java -classpath bin:bin/gui.jar TestEventManager
+#	java -classpath bin:bin/gui.jar TestBoidsSimulator
 
 clean:
 	rm -rf bin/*.class

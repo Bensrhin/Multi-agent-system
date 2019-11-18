@@ -7,7 +7,7 @@ import java.util.Random;
 public class TestImmigration{
   public static void main(String[] args){
     int N = 10; int M = 10;
-    int NB_ETATS = 4;
+    int NB_ETATS = 8;
 
     int mat0[][] = {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // exemple du poly
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
