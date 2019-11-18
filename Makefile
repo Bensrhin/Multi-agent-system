@@ -23,7 +23,6 @@
 
 all: testGUI
 
-<<<<<<< HEAD
 Conway:
 	make testConway
 	make exeConway
@@ -39,10 +38,9 @@ Shelling:
 Boids:
 	make testBoidsSimulator
 	make exeBoidsSimulator
-=======
+
 testGUI:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestEventManager.java
->>>>>>> bbaad3b5fed2b7a49ad5d62d9e8af4e13f4b80ac
 
 testConway:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestConway.java
@@ -61,7 +59,7 @@ testBoidsSimulator:
 #   > java -classpath bin TestGUI
 # ou bien lancer l'execution en passant par ce Makefile:
 #   > make exeIHM
-<<<<<<< HEAD
+
 exeConway:
 	java -classpath bin:bin/gui.jar TestConway
 exeImmigration:
@@ -70,16 +68,6 @@ exeShelling:
 	java -classpath bin:bin/gui.jar TestShelling
 exeBoidsSimulator:
 	java -classpath bin:bin/gui.jar TestBoidsSimulator
-=======
-exeGUI:
-#	java -classpath bin:bin/gui.jar TestBallsSimulator2
-#	java -classpath bin:bin/gui.jar TestBallsSimulator
-	java -classpath bin:bin/gui.jar TestEventManager
-#	java -classpath bin:bin/gui.jar TestShelling
-#	java -classpath bin:bin/gui.jar TestImmigration
-#	java -classpath bin:bin/gui.jar TestEventManager
-#	java -classpath bin:bin/gui.jar TestBoidsSimulator
->>>>>>> bbaad3b5fed2b7a49ad5d62d9e8af4e13f4b80ac
 
 clean:
 	rm -rf bin/*.class
