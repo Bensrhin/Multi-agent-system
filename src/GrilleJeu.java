@@ -14,11 +14,15 @@ public abstract class GrilleJeu implements Simulable{
   GUISimulator gui;
   LinkedList<Point> vacants; //uniquement pour Shelling
   int seuil; //uniquement pour Shelling
+  EventManager eventManager;
 
   public GrilleJeu(int mat[][], int nb_etats, GUISimulator gui, int no_jeu, int N, int M){
           this.mat = mat; this.nb_etats = nb_etats ;this.gui = gui; this.no_jeu = no_jeu;
           this.N = N; this.M = M;
-          mat_copy =  new int[N][M];
+          // eventManager = new EventManager();
+          // eventManager.addEvent(new EventJeu(0, this));
+
+          mat_copy =  new int[N][M];//copie matrice
           for (int i = 0; i<N; i++){
             for (int j = 0; j<M; j++){
               mat_copy[i][j] = mat[i][j];
@@ -45,6 +49,7 @@ public abstract class GrilleJeu implements Simulable{
 
   @Override
   public void next(){
+    // eventManager.next();
     this.update_GUI(this.mat, this.nb_etats, this.gui);
     this.mat = update_mat(this.mat);
   }

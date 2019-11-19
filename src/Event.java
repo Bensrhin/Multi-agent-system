@@ -1,7 +1,7 @@
 
 public abstract class Event implements Comparable<Event>{
 
-  private long date;
+  public long date;
 
   public Event(long date){
     this.date = date;
