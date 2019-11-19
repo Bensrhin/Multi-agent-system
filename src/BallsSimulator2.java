@@ -6,12 +6,13 @@ import java.util.Random;
 
 
 public class BallsSimulator2 implements Simulable{
-  private int nombre;
-  private Oval[] balles;
-  private int[] directions_X;
-  private int[] directions_Y;
-  private int[] pas_X;
-  private int[] pas_Y;
+  public int nombre;
+  public Oval[] balles;
+  public int[] directions_X;
+  public int[] directions_Y;
+  public int[] pas_X;
+  public int[] pas_Y;
+  public EventManager eventManager;
 
   public BallsSimulator2(Oval[] balles, int nombre){
       this.nombre = nombre;
@@ -26,19 +27,14 @@ public class BallsSimulator2 implements Simulable{
         this.directions_X[i] = 1; this.directions_Y[i] = 1;
         this.pas_X[i] = gen.nextInt(50);this.pas_Y[i] = gen.nextInt(50);
       }
+
+      eventManager = new EventManager();
+      eventManager.addEvent(new EventTranslate(1, this));
   }
 
   @Override
   public void next(){
-    for (int i = 0; i<this.nombre; i++){
-      if (this.balles[i].getX()+50>=500 || this.balles[i].getX()-50<0){
-        this.directions_X[i] = -this.directions_X[i];
-      }
-      if (this.balles[i].getY()+50>=500 || this.balles[i].getY()-50<0){
-        this.directions_Y[i] = -this.directions_Y[i];
-      }
-      this.balles[i].translate(this.directions_X[i]*this.pas_X[i], this.directions_Y[i]*this.pas_Y[i]);
-    }
+    eventManager.next();
   }
 
   @Override
