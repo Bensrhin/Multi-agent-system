@@ -17,7 +17,6 @@ public class TestBallsSimulator2{
       window.addGraphicalElement(ov);
       Balles[i] = ov;
     }
-
-    window.setSimulable(new BallsSimulator2(Balles, NB));
+    window.setSimulable(new BallsSimulator2(Balles));
   }
 }

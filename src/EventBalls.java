@@ -4,10 +4,10 @@ import gui.*;
 import java.awt.Color;
 import java.util.Random;
 
-public class EventTranslate extends Event {
+public class EventBalls extends Event {
   public BallsSimulator2 bs;
 
-  public EventTranslate(int date, BallsSimulator2 bs){
+  public EventBalls(int date, BallsSimulator2 bs){
     super(date);
     this.bs = bs;
   }
@@ -22,7 +22,7 @@ public class EventTranslate extends Event {
       }
       bs.balles[i].translate(bs.directions_X[i]*bs.pas_X[i], bs.directions_Y[i]*bs.pas_Y[i]);
     }
-    bs.eventManager.addEvent(new EventTranslate((int)date+1, this.bs));
+    bs.eventManager.addEvent(new EventBalls((int)date+1, this.bs));
   }
 
 }
