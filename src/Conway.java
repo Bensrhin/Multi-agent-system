@@ -6,8 +6,8 @@ import java.util.*;
 
 public class Conway extends GrilleJeu{
 
-    public Conway(int mat[][], int nb_etats, GUISimulator gui, int no_jeu, int N, int M){
-      super(mat, nb_etats, gui, no_jeu, N, M);
+    public Conway(int mat[][], int nb_etats, GUISimulator gui){
+      super(mat, nb_etats, gui);
     }
 
     public int[][] update_mat(int[][] mat){

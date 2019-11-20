@@ -6,8 +6,8 @@ import java.util.*;
 
 public class Immigration extends GrilleJeu{
 
-    public Immigration(int mat[][], int nb_etats, GUISimulator gui, int no_jeu, int N, int M){
-      super(mat, nb_etats, gui, no_jeu, N, M);
+    public Immigration(int mat[][], int nb_etats, GUISimulator gui){
+      super(mat, nb_etats, gui);
     }
 
     public int[][] update_mat(int[][] mat){

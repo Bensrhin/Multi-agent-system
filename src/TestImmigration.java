@@ -6,8 +6,8 @@ import java.util.Random;
 
 public class TestImmigration{
   public static void main(String[] args){
-    int N = 30; int M = 30;
-    int NB_ETATS = 4;
+    int N = 20; int M = 20;
+    int NB_ETATS = 6;
 
     int mat0[][] = {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // exemple du poly
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -30,6 +30,6 @@ public class TestImmigration{
     }
 
     GUISimulator gui = new GUISimulator(500, 500, Color.WHITE);
-    gui.setSimulable(new Immigration(mat_aleatoire, NB_ETATS, gui, 1, N, M));
+    gui.setSimulable(new Immigration(mat_aleatoire, NB_ETATS, gui));
   }
 }

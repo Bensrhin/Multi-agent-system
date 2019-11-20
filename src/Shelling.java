@@ -8,8 +8,8 @@ public class Shelling extends GrilleJeu{
     LinkedList<Point> vacants;
     int seuil;
 
-    public Shelling(int mat[][], int nb_etats, GUISimulator gui, int no_jeu, LinkedList<Point> vacants, int seuil, int N, int M){
-          super(mat, nb_etats, gui, no_jeu, N, M);
+    public Shelling(int mat[][], int nb_etats, GUISimulator gui, LinkedList<Point> vacants, int seuil){
+          super(mat, nb_etats, gui);
           this.vacants = vacants; this.seuil = seuil;
       }
 

@@ -32,9 +32,6 @@ public class BallsSimulator2 implements Simulable{
 
   @Override
   public void next(){
-    for (int i =0; i<balles.length; i++){
-      System.out.println(directions_X[i]);
-    }
     eventManager.next();
   }
 

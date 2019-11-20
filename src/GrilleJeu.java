@@ -10,15 +10,12 @@ public abstract class GrilleJeu implements Simulable{
   int mat[][];
   int mat_copy[][] ; //pour restart
   int nb_etats;
-  int no_jeu; //0:Conway; 1:Immigration; 2:Shelling
   GUISimulator gui;
-  LinkedList<Point> vacants; //uniquement pour Shelling
-  int seuil; //uniquement pour Shelling
   EventManager eventManager;
 
-  public GrilleJeu(int mat[][], int nb_etats, GUISimulator gui, int no_jeu, int N, int M){
-          this.mat = mat; this.nb_etats = nb_etats ;this.gui = gui; this.no_jeu = no_jeu;
-          this.N = N; this.M = M;
+  public GrilleJeu(int mat[][], int nb_etats, GUISimulator gui){
+          this.mat = mat; this.nb_etats = nb_etats ;this.gui = gui;
+          this.N = mat.length; this.M = mat[0].length;
           // eventManager = new EventManager();
           // eventManager.addEvent(new EventJeu(0, this));
 
@@ -37,9 +34,9 @@ public abstract class GrilleJeu implements Simulable{
       for (int j = 0; j<M; j++){
         int k = mat[i][j]; //état de la cellule
         int color = (int) 255- (k*255/(nb_etats-1)); //couleur (entre blanc0x000000 et noir 0xffffff)
-        Rectangle rec = new Rectangle ((i+1)*20, (j+1)*20,
+        Rectangle rec = new Rectangle (i*500/mat.length+50, j*500/mat.length+50,
                   Color.decode ("#ff0000"), Color.decode ("#"+Integer.toHexString(color)
-                  +Integer.toHexString(color)+Integer.toHexString(color)) , 20);
+                  +Integer.toHexString(color)+Integer.toHexString(color)) , 500/mat.length);
         gui.addGraphicalElement(rec); //je n'ai pas trouvé comment changer la couleur..
       }
     }

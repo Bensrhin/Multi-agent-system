@@ -120,7 +120,7 @@ public class EventBoids extends Event {
     return r;
   }
 
-  public Point strong_wind(int wx, int wy){//bah un peu de vent, c'est normal non?
+  public Point strong_wind(int wx, int wy){
     return new Point(wx, wy);
   }
 

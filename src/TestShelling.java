@@ -6,10 +6,10 @@ import java.util.*;
 
 public class TestShelling{
   public static void main(String[] args){
-    int N = 50; int M = 50;
+    int N = 20; int M = 20;
     int NB_ETATS = 3;
-    int SEUIL = 2;
-    int NB_BLANCS = N*M/10;
+    int SEUIL = 3;
+    int NB_BLANCS = N*M/4;
 
 
     int mat_aleatoire[][] = new int[N][M]; // on génère une matrice aleatoire, pas très efficacement apparemment
@@ -44,7 +44,7 @@ public class TestShelling{
 
 
     GUISimulator gui = new GUISimulator(500, 500, Color.WHITE);
-    gui.setSimulable(new Shelling(mat_aleatoire, NB_ETATS, gui, 3, vacants, SEUIL, N, M));
+    gui.setSimulable(new Shelling(mat_aleatoire, NB_ETATS, gui, vacants, SEUIL));
 
   }
 }
