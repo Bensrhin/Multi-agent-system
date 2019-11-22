@@ -27,7 +27,7 @@ public abstract class GrilleJeu implements Simulable{
           }
       }
 
-  public void update_GUI(int[][] mat, int nbEtats, GUISimulator gui){
+  public void updateGUI(int[][] mat, int nbEtats, GUISimulator gui){
     // Affichage de la matrice à nbEtats états, couleurs graduées du blanc au noir
     // 2 états pour Conway, K pour le jeu d'immigration et Shelling
     for (int i = 0; i<N; i++){
@@ -42,7 +42,7 @@ public abstract class GrilleJeu implements Simulable{
     }
   }
 
-  public abstract int[][] update_mat(int[][] mat);
+  public abstract int[][] updateMat(int[][] mat);
 
 
   @Override
@@ -55,8 +55,8 @@ public abstract class GrilleJeu implements Simulable{
     eventManager.restart();
     eventManager.addEvent(new EventJeu((int)eventManager.currentDate, this));
 
-    this.update_GUI(this.matCopy, this.nbEtats, this.gui);
-    this.mat = this.update_mat(this.matCopy);
+    this.updateGUI(this.matCopy, this.nbEtats, this.gui);
+    this.mat = this.updateMat(this.matCopy);
   }
 
 }
