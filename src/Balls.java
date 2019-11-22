@@ -51,11 +51,10 @@ public class Balls{
     }
     // Méthodes:
     /***************** On vérifie si la balle reste dans la fenêtre *************/
-    public void bonne_position(Pointf prec, Pointf suiv){
+    public void bonnePosition(Pointf prec, Pointf suiv){
       /* construction d'un segment à partir de
         la postion initiale et finale de la balle après le next */
       Segment segment = new Segment(prec, suiv);
-      Pointf intersection;
       /* On vérifie si ce segment a des points d'intersection
         avec les segments de la fenêtre */
       for (int i=0; i<4; i++){
@@ -98,7 +97,7 @@ public class Balls{
         /* on translate la balle */
         ball.translate();
         /* on enregistre la bonne position pour cette balle */
-        this.bonne_position(prec, ball);
+        this.bonnePosition(prec, ball);
 
       }
     }

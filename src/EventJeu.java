@@ -13,7 +13,7 @@ public class EventJeu extends Event {
 
   public void execute(){
     grille.update_GUI(grille.mat, grille.nbEtats, grille.gui);
-    grille.mat = grille.update_mat(grille.mat);
+    grille.mat = grille.updateMat(grille.mat);
     grille.eventManager.addEvent(new EventJeu((int)this.date+1, grille));
   }
 

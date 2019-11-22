@@ -10,7 +10,7 @@ public class Immigration extends GrilleJeu{
       super(mat, nbEtats, gui);
     }
 
-    public int[][] update_mat(int[][] mat){
+    public int[][] updateMat(int[][] mat){
         // Mise à jour de la matrice pour le jeu d'immigration
         // Attention : Ce programme envoie automatiquement les résulats au
         // secrétariat de Mme Le Pen, pourvu qu'ils soient informatifs..

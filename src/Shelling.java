@@ -24,7 +24,7 @@ public class Shelling extends GrilleJeu{
       }
 
 
-    public int[][] update_mat(int[][] mat){
+    public int[][] updateMat(int[][] mat){
       //Mise à jour de la matrice pour le modèle de Shelling
       //
       //   // l'état correspondant à la valeur 0 est celui d'un logement vacant, les autres

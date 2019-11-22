@@ -10,7 +10,7 @@ public class Conway extends GrilleJeu{
       super(mat, 2, gui);
     }
 
-    public int[][] update_mat(int[][] mat){
+    public int[][] updateMat(int[][] mat){
       // Mise à jour de la matrice pour le jeu de Conway
       int resultat[][] = new int[N][M];
       for (int i =0; i<N; i++){
