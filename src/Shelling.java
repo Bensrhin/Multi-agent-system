@@ -8,9 +8,19 @@ public class Shelling extends GrilleJeu{
     LinkedList<Point> vacants;
     int seuil;
 
-    public Shelling(int mat[][], int nb_etats, GUISimulator gui, LinkedList<Point> vacants, int seuil){
-          super(mat, nb_etats, gui);
-          this.vacants = vacants; this.seuil = seuil;
+    public Shelling(int mat[][], int nbEtats, GUISimulator gui, int seuil){
+          super(mat, nbEtats, gui);
+          this.seuil = seuil;
+
+          vacants = new LinkedList<Point>();
+          for (int i=0; i<N; i++){
+            for (int j=0; j<M; j++){
+              if (mat[i][j]==0){
+                  vacants.add(new Point(i, j));
+              }
+            }
+          }
+
       }
 
 
@@ -56,7 +66,6 @@ public class Shelling extends GrilleJeu{
             }
           }
         }
-        // System.out.println("Itération accomplie!");
         return(resultat);
     }
 

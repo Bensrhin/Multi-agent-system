@@ -6,13 +6,13 @@ import java.util.*;
 
 public class TestShelling{
   public static void main(String[] args){
-    int N = 20; int M = 20;
-    int NB_ETATS = 3;
-    int SEUIL = 3;
+    int N = 50; int M = 50;
+    int NB_ETATS = 5;
+    int SEUIL = 5;
     int NB_BLANCS = N*M/4;
 
 
-    int mat_aleatoire[][] = new int[N][M]; // on génère une matrice aleatoire, pas très efficacement apparemment
+    int matAleatoire[][] = new int[N][M]; // on génère une matrice aleatoire, pas très efficacement je reconnais
     Random gen = new Random();
     for(int i=0;i<N;i++){
       for(int j=0;j<M;j++){
@@ -20,7 +20,7 @@ public class TestShelling{
         do{
           x = gen.nextInt(NB_ETATS);
         }while(x==0);
-        mat_aleatoire[i][j] = x;
+        matAleatoire[i][j] = x;
       }
     }
     for (int i = 0; i<NB_BLANCS; i++){
@@ -28,23 +28,12 @@ public class TestShelling{
       do{
         i0 = gen.nextInt(N);
         j0 = gen.nextInt(M);
-      }while(mat_aleatoire[i0][j0]==0);
-      mat_aleatoire[i0][j0] = 0;
+      }while(matAleatoire[i0][j0]==0);
+      matAleatoire[i0][j0] = 0;
     }
-
-
-    LinkedList<Point> vacants = new LinkedList<Point>();
-    for (int i=0; i<N; i++){
-      for (int j=0; j<M; j++){
-        if (mat_aleatoire[i][j]==0){
-            vacants.add(new Point(i, j));
-        }
-      }
-    }
-
 
     GUISimulator gui = new GUISimulator(500, 500, Color.WHITE);
-    gui.setSimulable(new Shelling(mat_aleatoire, NB_ETATS, gui, vacants, SEUIL));
+    gui.setSimulable(new Shelling(matAleatoire, NB_ETATS, gui, SEUIL));
 
   }
 }

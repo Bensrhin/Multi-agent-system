@@ -6,10 +6,10 @@ import java.util.Random;
 
 public class TestImmigration{
   public static void main(String[] args){
-    int N = 20; int M = 20;
+    int N = 40; int M = 40;
     int NB_ETATS = 6;
 
-    int mat0[][] = {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // exemple du poly
+    int mat[][] = {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // exemple du poly
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                     {0, 0, 3, 0, 1, 1, 0, 0, 0, 0},
                     {0, 0, 3, 1, 1, 1, 2, 0, 0, 0},
@@ -21,15 +21,15 @@ public class TestImmigration{
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0} };
 
 
-    int mat_aleatoire[][] = new int[N][M]; // matrice aleatoire
+    int matAleatoire[][] = new int[N][M]; // matrice aleatoire
     Random gen = new Random();
     for(int i=0;i<N;i++){
       for(int j=0;j<M;j++){
-        mat_aleatoire[i][j] = gen.nextInt(NB_ETATS);
+        matAleatoire[i][j] = gen.nextInt(NB_ETATS);
       }
     }
 
     GUISimulator gui = new GUISimulator(500, 500, Color.WHITE);
-    gui.setSimulable(new Immigration(mat_aleatoire, NB_ETATS, gui));
+    gui.setSimulable(new Immigration(matAleatoire, NB_ETATS, gui));
   }
 }

@@ -12,9 +12,9 @@ public class EventJeu extends Event {
   }
 
   public void execute(){
-    // grille.update_GUI(grille.mat, grille.nb_etats, grille.gui);
-    // grille.mat = update_mat(grille.mat);
-    // grille.eventManager.add(new EventJeu(this.date+1, this));
+    grille.update_GUI(grille.mat, grille.nbEtats, grille.gui);
+    grille.mat = grille.update_mat(grille.mat);
+    grille.eventManager.addEvent(new EventJeu((int)this.date+1, grille));
   }
 
 }

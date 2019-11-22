@@ -21,11 +21,11 @@
 #   -classpath : repertoire dans lequel sont cherches les .class deja compiles
 #   -sourcepath : repertoire dans lequel sont cherches les .java (dependances)
 
-all: Conway
+all: Balls Conway Immigration Shelling Boids
 
-BallsSimulator2:
-	make testBallsSimulator2
-	make exeBallsSimulator2
+Balls:
+	make testBallsSimulator
+	make exeBallsSimulator
 
 Conway:
 	make testConway
@@ -48,8 +48,14 @@ EventManager:
 	java -classpath bin:bin/gui.jar TestEventManager
 
 
-testBallsSimulator2:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBallsSimulator2.java
+
+
+
+
+
+
+testBallsSimulator:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBallsSimulator.java
 
 testGUI:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestEventManager.java
@@ -72,8 +78,8 @@ testBoidsSimulator:
 # ou bien lancer l'execution en passant par ce Makefile:
 #   > make exeIHM
 
-exeBallsSimulator2:
-	java -classpath bin:bin/gui.jar TestBallsSimulator2
+exeBallsSimulator:
+	java -classpath bin:bin/gui.jar TestBallsSimulator
 exeConway:
 	java -classpath bin:bin/gui.jar TestConway
 exeImmigration:

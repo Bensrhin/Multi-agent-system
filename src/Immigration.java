@@ -6,14 +6,14 @@ import java.util.*;
 
 public class Immigration extends GrilleJeu{
 
-    public Immigration(int mat[][], int nb_etats, GUISimulator gui){
-      super(mat, nb_etats, gui);
+    public Immigration(int mat[][], int nbEtats, GUISimulator gui){
+      super(mat, nbEtats, gui);
     }
 
     public int[][] update_mat(int[][] mat){
         // Mise à jour de la matrice pour le jeu d'immigration
         // Attention : Ce programme envoie automatiquement les résulats au
-        // secrétariat de Mme Le Pen, pourvu qu'ils soient informatifs.
+        // secrétariat de Mme Le Pen, pourvu qu'ils soient informatifs..
         int resultat[][] = new int[N][M];
         int[] voisins = new int[8];
         for (int i =0; i<N; i++){
@@ -30,7 +30,7 @@ public class Immigration extends GrilleJeu{
               }
             }
             if (c>=3){
-              resultat[i][j] = (resultat[i][j]+1)%this.nb_etats;
+              resultat[i][j] = (resultat[i][j]+1)%this.nbEtats;
             }
           }
         }
