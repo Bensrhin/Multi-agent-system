@@ -8,23 +8,28 @@ public class BallsSimulator implements Simulable{
   // attriblut de type Balls
   private Balls points;
   private Oval[] ovals;
-  private int dx;
-  private int dy;
   private GUISimulator window;
+  /* largeur et longueur */
   private int height;
   private int width;
+  /* background : sous forme rectangle */
   private Rectangle bg;
-
+  private Color ballColor[];
 
   // constructeur:
   public BallsSimulator(GUISimulator window){
     this.height = window.getPanelHeight();
     this.width = window.getPanelWidth();
-    this.dx = (int)(Math.random() * 5 + 5);
-    this.dy = (int)(Math.random() * 5 + 5);
     this.points = new Balls(this.height, this.width);
     this.ovals = new Oval[this.points.getNbBalls()];
     this.window = window;
+    Color colors[] = {Color.cyan, Color.green, Color.blue, Color.black, Color.pink, Color.darkGray, Color.yellow, Color.red};
+     // System.out.println("color : " + Color.blue);
+    this.ballColor = new Color[this.points.getNbBalls()];
+    for (int i = 0; i<this.points.getNbBalls(); i++)
+    {
+      this.ballColor[i] = colors[(int)(8*Math.random())];
+    }
     this.bg = new Rectangle(this.width/2, this.height/2,
     Color.blue, Color.lightGray, this.width, this.height);
     System.out.println(this.points.toString());
@@ -37,7 +42,7 @@ public class BallsSimulator implements Simulable{
     for (int i=0; i<this.points.getNbBalls(); i++){
       Point p = this.points.getBalls()[i];
       this.ovals[i] = new Oval((int)(p.getX()), (int)(p.getY()),
-      Color.black, Color.red, 20);
+      Color.black, ballColor[i], 20);
     }
     this.affichage(this.window);
   }
@@ -49,32 +54,10 @@ public class BallsSimulator implements Simulable{
     }
   }
 
-  //
-  //
-  //
-  // public double equation(Point p1, Point p2, double valeur, boolean abscisse){
-  //   // cette equation return soit la valeur de x soit de y
-  //   // selon le booleen
-  //   // y = a x + b
-  //   double a = (p2.getY() - p1.getY()) / (p2.getX() - p1.getX());
-  //   double b = p2.getY() - a * p2.getX();
-  //   if (abscisse){
-  //     // le cas d'abcisse on renvoie x
-  //     return (valeur - b) / a;
-  //   }
-  //   else
-  //   // sinon on renvoie la valeur de y
-  //   return a * valeur + b;
-  // }
-  //
-  //
-  //
 
   @Override
   public void next(){
-    // le pas doit être choisi d'une manière aléatoire:
-
-    this.points.translate(dx, dy);
+    this.points.translate();
     System.out.println(this.points.toString());
     this.update_ovals(this.points);
   }

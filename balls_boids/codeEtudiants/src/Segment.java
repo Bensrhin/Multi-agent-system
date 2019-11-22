@@ -4,17 +4,20 @@ import java.math.*;
 public class Segment{
   // definition d'un segment du plan
   public Pointf[] points = new Pointf[2];
+
+  
   // constructeur
    public Segment(Pointf p1, Pointf p2){
      this.points[0] = p1;
      this.points[1] = p2;
    }
 
-
    // Méthodes
+   /* renvoie la lonqueur du segment */
    public double longueur(){
      return this.points[0].distance(this.points[1]);
    }
+   /* renvoie un booleen si le point appartient au segment*/
    public boolean contient(Pointf point){
      double distance = 0.;
      for (Pointf p : this.points){
@@ -23,10 +26,9 @@ public class Segment{
      double round = Math.abs(this.longueur() - distance);
      return  (0 <= round & round <= 0.01);
    }
-
+   /* renvoie le point d'intersection entre deux segments , sinon null*/
    public Pointf intersection(Segment segment){
      // coordonnées du segment 1
-     // System.out.print(segment.points[0].toString());
      double x0 = this.points[0].getX();
      double y0 = this.points[0].getY();
      double x1 = this.points[1].getX();
@@ -42,13 +44,9 @@ public class Segment{
      double xw = x3 - x2;
      double yw = y3 - y2;
      double denominateur = (xv * yw) - (yv * xw);
-
      if (denominateur == 0.){
-
        return null;
      }
-
-     // System.out.println("sommets[i].getX()");
      double alpha = ((y0-y2)*xw - (x0-x2)*yw) / denominateur;
      Pointf intersection = new Pointf(x0 + alpha*xv, y0 + alpha*yv);
      if ( this.contient(intersection) & segment.contient(intersection) ){

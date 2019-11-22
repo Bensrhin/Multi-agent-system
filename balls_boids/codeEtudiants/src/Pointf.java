@@ -1,42 +1,35 @@
 /**
-@author Nabil Bensrhier
-@version 0.01
+@version finale
 */
 import java.awt.Point;
 import java.math.*;
 import java.lang.Math;
 
+/****** la création d'une nouvelle classe point avec d'autre méthodes *********/
 public class Pointf extends Point{
+  /* les coordonnées du point */
   private double xd;
   private double yd;
-  private double sens[] = {-1., 1., 1., -1, 0.};
+  /* le sens du translation soit dans le sens positif ou négatif */
   public double sensx;
   public double sensy;
-
+  /* le pas selon x et y */
+  private double pasX;
+  private double pasY;
   //new constructor
   public Pointf(double x, double y){
     this.xd = x;
     this.yd = y;
+    /*  initialisation des pas d'une manière probabiliste */
+    this.pasX = (int)(Math.random() * 7 + 2);
+    this.pasY = (int)(Math.random() * 7 + 2);
+    /*  initialisation du sens d'une manière probabiliste */
+    double sens[] = {-1., 1., 1, -1, 0.};
+    /* le 1 signifie le sens direct -1 sens inverse */
     this.sensx = sens[(int)(5*Math.random())];
-    this.sensy = sens[(int)(5*Math.random())];
+    this.sensy = (sensx == 0)?1:sens[(int)(5*Math.random())];
   }
 
-  /* addition of two Pointfs */
-  public Pointf Vector_add(Pointf v1, Pointf v2, int add)
-  {
-    double vx = v1.getX() + add * v2.getX();
-    double vy = v1.getY() + add * v2.getY();
-    Pointf v = new Pointf(vx, vy);
-    return v;
-  }
-  /* multiplication by a scalar */
-  public Pointf Vector_mult(Pointf v1, double A)
-  {
-    double vx = v1.getX() * A;
-    double vy = v1.getY() * A;
-    Pointf v = new Pointf(vx, vy);
-    return v;
-  }
 
 
   @Override
@@ -49,9 +42,9 @@ public class Pointf extends Point{
     double diffy = this.getY() - p.getY();
     return Math.sqrt(diffx*diffx + diffy*diffy);
   }
-  public void translate(double dx, double dy){
-    this.xd += dx*this.sensx;
-    this.yd += dy*this.sensy;
+  public void translate(){
+    this.xd += pasX*this.sensx;
+    this.yd += pasY*this.sensy;
   }
   @Override
   public double getX(){
